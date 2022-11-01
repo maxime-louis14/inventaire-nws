@@ -2,12 +2,12 @@ version: "3"
 
 services:
   database:
-    container_name: database2
+    container_name: database
     image: mysql:5.7
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: Inventaire-nws-2
+      MYSQL_DATABASE: Inventaire-nws
       MYSQL_USER: user
       MYSQL_PASSWORD: user
     volumes:
@@ -20,7 +20,7 @@ services:
     environment:
       - PMA_ARBITRARY=1
   nginx:
-    container_name: nginx-nws
+    container_name: nginx
     image: nginx:stable-alpine
     ports:
       - "8080:80"
@@ -31,7 +31,7 @@ services:
       - php
       - database
   php:
-    container_name: php-nws
+    container_name: php
     build:
       context: .
     ports:
