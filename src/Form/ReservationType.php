@@ -4,11 +4,11 @@ namespace App\Form;
 
 use App\Entity\Reservation;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Exception\Core\Type\DateTimeImmutable;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class ReservationType extends AbstractType
 {
@@ -19,22 +19,22 @@ class ReservationType extends AbstractType
                 'label' => 'Nom'
             ])
             ->add('email')
-            ->add('rendered',DateTimeImmutableType::class, array(
+            ->add('rendered', DateTimeType::class, array(
                 'widget' => 'single_text',
                 'label' => 'date du rendu',
             ))
 
             // ->add('loandate', DateTimeType::class, array(
             //     'widget' => 'single_text',
-            //     'label' => 'date de prêt'
+            //     'label' => 'date de prêt',
+            //     '' => ''
             // ))
 
             ->add('isrenderd', CheckboxType::class, [
                 'label' => 'Rendu',
                 'required' => false,
             ])
-            ->add('product')
-        ;
+            ->add('product');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ReservationRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
@@ -19,11 +20,11 @@ class Reservation
     #[ORM\Column(type: 'string', length: 255)]
     private $email;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $rendered;
+    #[ORM\Column(type: TYPES::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $rendered = null;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $loandate;
+    #[ORM\Column(type: TYPES::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $loandate = null;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $isrenderd;
@@ -61,24 +62,29 @@ class Reservation
         return $this;
     }
 
-    public function getRendered(): ?\DateTimeImmutable
+    public function __construct()
+    {
+        $this->date = new \DateTime('now');
+    }
+
+    public function getRendered(): ?\DateTimeInterface
     {
         return $this->rendered;
     }
 
-    public function setRendered(\DateTimeImmutable $rendered): self
+    public function setRendered(\DateTimeInterface $rendered): self
     {
         $this->rendered = $rendered;
 
         return $this;
     }
 
-    public function getLoandate(): ?\DateTimeImmutable
+    public function getLoandate(): ?\DateTimeInterface
     {
         return $this->loandate;
     }
 
-    public function setLoandate(\DateTimeImmutable $loandate): self
+    public function setLoandate(\DateTimeInterface $loandate): self
     {
         $this->loandate = $loandate;
 
