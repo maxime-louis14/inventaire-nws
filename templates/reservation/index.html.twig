@@ -9,11 +9,11 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Email</th>
-                {# <th>Rendered</th> #}
-                <th>Loandate</th>
-                <th>Isrenderd</th>
+                <th>date du rendu</th>
+                <th>date de prêt</th>
+                <th>Rendu</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,8 +23,8 @@
                 <td>{{ reservation.id }}</td>
                 <td>{{ reservation.name }}</td>
                 <td>{{ reservation.email }}</td>
-                {# <td>{{ reservation.rendered ? reservation.rendered|date('Y-m-d H:i:s') : '' }}</td> #}
-                <td>{{ reservation.loandate ? reservation.loandate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ reservation.rendered ? reservation.rendered|date('d-m-Y H:i:s') : '' }}</td>
+                <td>{{ reservation.loandate ? reservation.loandate|date('d-m-Y H:i:s') : '' }}</td>
                 <td>{{ reservation.isrenderd ? 'Oui' : 'Non' }}</td>
                 <td>
                     <a href="{{ path('app_reservation_show', {'id': reservation.id}) }}">show</a>
