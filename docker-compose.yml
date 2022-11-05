@@ -2,7 +2,7 @@ version: "3"
 
 services:
   database:
-    container_name: database
+    container_name: BDD
     image: mysql:5.7
     command: --default-authentication-plugin=mysql_native_password
     environment:
