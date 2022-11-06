@@ -67,6 +67,7 @@ class Materiel
     /**
      * @return Collection<int, Reservation>
      */
+
     public function getReservations(): Collection
     {
         return $this->reservations;

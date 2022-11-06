@@ -2,11 +2,9 @@
 
 namespace App\Controller;
 
-use DateTimeImmutable;
-use DateTime;
+
 use App\Entity\Reservation;
 use App\Form\ReservationType;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,14 +24,19 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/new', name: 'app_reservation_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ReservationRepository $reservationRepository, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, ReservationRepository $reservationRepository): Response
     {
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
+        // Si m'ont formulaire et envoyait et valide, tu ajoutes une nouvelle date et tu enlèves une quantité à ce produit
         if ($form->isSubmitted() && $form->isValid()) {
             $reservation->setLoandate(new \DateTime());
+            // Je veux incrémentation et décrémentation les stocks de produit dans l'entity matereil
+            //(La manière la plus basique et naturelle est l’utilisation du ‘+1’ ou ‘-1’)
+            $quantity = $reservation->getProduct()->getQuantity()-1;
+            
             $reservationRepository->add($reservation, true);
             return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
         }
