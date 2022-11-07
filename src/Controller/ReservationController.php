@@ -35,8 +35,18 @@ class ReservationController extends AbstractController
             $reservation->setLoandate(new \DateTime());
             // Je veux incrémentation et décrémentation les stocks de produit dans l'entity matereil
             //(La manière la plus basique et naturelle est l’utilisation du ‘+1’ ou ‘-1’)
-            $quantity = $reservation->getProduct()->getQuantity()-1;
             
+                // $quantity et egale a $reservation et qui recuper les donnés de product 
+                //et product recuper les donnés de Quantity et le -1 c'est 
+             $quantity = $reservation->getProduct()->getQuantity()-1;
+
+                /*
+                *
+                */
+            // $reservation->getProduct()->setQuantity($quantity);
+            // $reservationRepository->save($reservation, true);
+
+
             $reservationRepository->add($reservation, true);
             return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
         }

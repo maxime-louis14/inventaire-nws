@@ -29,9 +29,7 @@ class MaterielController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $materielRepository->add($materiel, true);
-
             return $this->redirectToRoute('app_materiel_index', [], Response::HTTP_SEE_OTHER);
         }
 
