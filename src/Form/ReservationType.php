@@ -30,6 +30,7 @@ class ReservationType extends AbstractType
             //     '' => ''
             // ))
             ->add('product')
+            
             ->add('isrenderd', CheckboxType::class, [
                 'label' => 'Rendu',
                 'required' => false,
