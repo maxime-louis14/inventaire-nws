@@ -31,7 +31,7 @@ class ReservationControllerTest extends WebTestCase
         self::assertPageTitleContains('Reservation index');
 
         // Use the $crawler to perform additional assertions e.g.
-        self::assertSame('Some text on the page', $crawler->filter('.p')->first());
+        // self::assertSame('Some text on the page', $crawler->filter('.p')->first());  
     }
 
     public function testNew(): void

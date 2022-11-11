@@ -1,17 +1,17 @@
 <?php
 
-namespace App\DataFixtures;
+// namespace App\DataFixtures;
 
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
+// use Doctrine\Bundle\FixturesBundle\Fixture;
+// use Doctrine\Persistence\ObjectManager;
 
-class AppFixtures extends Fixture
-{
-    public function load(ObjectManager $manager): void
-    {
-        // $product = new Product();
-        // $manager->persist($product);
+// class AppFixtures extends Fixture
+// {
+//     public function load(ObjectManager $manager): void
+//     {
+//         // $product = new Product();
+//         // $manager->persist($product);
 
-        $manager->flush();
-    }
-}
+//         $manager->flush();
+//     }
+// }

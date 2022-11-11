@@ -1,0 +1,6 @@
+# config/services_test.yaml
+services:
+    # redefine the alias as it should be while making it public
+    App\Contracts\Repository\NewsRepositoryInterface:
+        alias: App\Repository\NewsRepository
+        public: true
