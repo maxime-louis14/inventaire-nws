@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Reservation;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,12 +30,12 @@ class ReservationType extends AbstractType
             //     'label' => 'date de prêt',
             //     '' => ''
             // ))
-
+            ->add('product')
+            
             ->add('isrenderd', CheckboxType::class, [
                 'label' => 'Rendu',
                 'required' => false,
-            ])
-            ->add('product');
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -18,7 +18,7 @@ class Materiel
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'integer')]
     private $quantity;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Reservation::class)]
@@ -46,12 +46,12 @@ class Materiel
         return $this;
     }
 
-    public function getQuantity(): ?string
+    public function getQuantity(): ?int
     {
         return $this->quantity;
     }
 
-    public function setQuantity(string $quantity): self
+    public function setQuantity(int $quantity): self
     {
         $this->quantity = $quantity;
 
@@ -67,6 +67,7 @@ class Materiel
     /**
      * @return Collection<int, Reservation>
      */
+
     public function getReservations(): Collection
     {
         return $this->reservations;
