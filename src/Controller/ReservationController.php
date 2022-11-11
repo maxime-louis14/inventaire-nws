@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Materiel;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;

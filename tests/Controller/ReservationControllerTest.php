@@ -13,7 +13,7 @@ class ReservationControllerTest extends WebTestCase
     private ReservationRepository $repository;
     private string $path = '/reservation/';
 
-    protected function setUp(): void
+    protected function setUp(): void 
     {
         $this->client = static::createClient();
         $this->repository = (static::getContainer()->get('doctrine'))->getRepository(Reservation::class);
@@ -23,7 +23,7 @@ class ReservationControllerTest extends WebTestCase
         }
     }
 
-    public function testIndex(): void
+    public function testIndex(): void   
     {
         $crawler = $this->client->request('GET', $this->path);
 
@@ -31,7 +31,7 @@ class ReservationControllerTest extends WebTestCase
         self::assertPageTitleContains('Reservation index');
 
         // Use the $crawler to perform additional assertions e.g.
-        // self::assertSame('Some text on the page', $crawler->filter('.p')->first());
+        self::assertSame('Some text on the page', $crawler->filter('.p')->first());
     }
 
     public function testNew(): void
@@ -63,10 +63,10 @@ class ReservationControllerTest extends WebTestCase
         $fixture = new Reservation();
         $fixture->setName('My Title');
         $fixture->setEmail('My Title');
-        $fixture->setRendered('My Title');
-        $fixture->setLoandate('My Title');
+        // $fixture->setRendered('My Title');
+        // $fixture->setLoandate('My Title');
         $fixture->setIsrenderd('My Title');
-        $fixture->setProduct('My Title');
+        // $fixture->setProduct('My Title');
 
         $this->repository->add($fixture, true);
 
@@ -84,10 +84,10 @@ class ReservationControllerTest extends WebTestCase
         $fixture = new Reservation();
         $fixture->setName('My Title');
         $fixture->setEmail('My Title');
-        $fixture->setRendered('My Title');
-        $fixture->setLoandate('My Title');
+        // $fixture->setRendered('My Title');
+        // $fixture->setLoandate('My Title');
         $fixture->setIsrenderd('My Title');
-        $fixture->setProduct('My Title');
+        // $fixture->setProduct('Oui Non');
 
         $this->repository->add($fixture, true);
 
@@ -110,7 +110,7 @@ class ReservationControllerTest extends WebTestCase
         self::assertSame('Something New', $fixture[0]->getEmail());
         self::assertSame('Something New', $fixture[0]->getRendered());
         self::assertSame('Something New', $fixture[0]->getLoandate());
-        self::assertSame('Something New', $fixture[0]->getIsrenderd());
+        // self::assertSame('Something New', $fixture[0]->getIsrenderd());
         self::assertSame('Something New', $fixture[0]->getProduct());
     }
 
@@ -123,10 +123,10 @@ class ReservationControllerTest extends WebTestCase
         $fixture = new Reservation();
         $fixture->setName('My Title');
         $fixture->setEmail('My Title');
-        $fixture->setRendered('My Title');
-        $fixture->setLoandate('My Title');
+        // $fixture->setRendered('My Title');
+        // $fixture->setLoandate('My Title');
         $fixture->setIsrenderd('My Title');
-        $fixture->setProduct('My Title');
+        // $fixture->setProduct('My Title');
 
         $this->repository->add($fixture, true);
 
