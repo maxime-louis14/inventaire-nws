@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
-use App\Entity\Materiel;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
+use App\Service\MailerService;
 use App\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 // use Symfony\Component\Validator\Constraints\DateTime;
 
 #[Route('/reservation')]
@@ -24,7 +25,7 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/new', name: 'app_reservation_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ReservationRepository $reservationRepository): Response
+    public function new(Request $request, ReservationRepository $reservationRepository, MailerService $mailerService ): Response
     {
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
@@ -42,26 +43,36 @@ class ReservationController extends AbstractController
             // et product recuper les donnés de Quantity et le -1 retire une quantités
             $quantity = $reservation->getProduct()->getQuantity() - 1;
             $reservation->getProduct()->setQuantity($quantity);
-            
             /***
              * En php orienté objet, on appelle ça les "getters" et "setters". Les fonctions "get"
              * permettent de récupérer la valeur d'une propriété, alors que les fonctions "set" permettent d'initialiser la valeur d'une propriété.
              */
 
+             $loandate = $reservation->getLoandate()->format("d-m-y H:i");
+             $destinaire = $reservation->getEmail();
+             $rendered = $reservation->getRendered()->format("d-m-y H:i");
+             $product = $reservation->getProduct()->getName();
+             $messageSubject =" <h1>Nous confirmons la reservation du matériel : $product</h1>
+             <p>Informations : 
+                 <ul>
+                     <li>Matériel : $product</li>
+                     <li>Date d'emprunt : $loandate</li>
+                     <li>Date de retour du matériel : $rendered</li>
+                 </ul>       
+             </p>
+             <p> Merci de prendre soin de notre matériel";
+            
+             $mailerService->sendMailer($destinaire, "Réservation : $product", $messageSubject);
+           
             $reservationRepository->add($reservation, true);
             $reservationRepository->save($reservation, true);
-
-            // dd($reservation);
-
             return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('reservation/new.html.twig', [
             'reservation' => $reservation,
             'form' => $form,
         ]);
     }
-
     #[Route('/{id}', name: 'app_reservation_show', methods: ['GET'])]
     public function show(Reservation $reservation): Response
     {
@@ -85,7 +96,7 @@ class ReservationController extends AbstractController
             // Si mon produit et rendu tu me rajoure +1 a la quantité et si il n'est pas rendu tu -1
             // tU FAIT PLUS 1 QUANT LE PRODUIT ET RENDU. 
             if ($oldrenderd != $reservation->isIsrenderd()) {
-                
+
                 if ($reservation->isIsrenderd()) {
                     $product = $reservation->getProduct()->getQuantity() + 1;
                     $reservation->getProduct()->setQuantity($product);
