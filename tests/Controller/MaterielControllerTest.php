@@ -31,7 +31,7 @@ class MaterielControllerTest extends WebTestCase
         self::assertPageTitleContains('Materiel index');
 
         // Use the $crawler to perform additional assertions e.g.
-        self::assertSame('Some text on the page', $crawler->filter('.p')->first()); 
+        // self::assertSame('Some text on the page', $crawler->filter('.p')->first()); 
     }
 
     public function testNew(): void
@@ -45,7 +45,7 @@ class MaterielControllerTest extends WebTestCase
 
         $this->client->submitForm('Save', [
             'materiel[name]' => 'Testing',
-            'materiel[quantity]' => 'Testing',
+            'materiel[quantity]' => '10',
         ]);
 
         self::assertResponseRedirects('/materiel/');
@@ -53,29 +53,29 @@ class MaterielControllerTest extends WebTestCase
         self::assertSame($originalNumObjectsInRepository + 1, count($this->repository->findAll()));
     }
 
-    public function testShow(): void
-    {
-        $this->markTestIncomplete();
-        $fixture = new Materiel();
-        $fixture->setName('My Title');
-        $fixture->setQuantity('My Title');
+        // public function testShow(): void
+        // {
+        //     $this->markTestIncomplete();
+        //     $fixture = new Materiel();
+        //     $fixture->setName('My Title');
+        //     $fixture->setQuantity('My Title');
 
-        $this->repository->add($fixture, true);
+        //     $this->repository->add($fixture, true);
 
-        $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
+        //     $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
 
-        self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('Materiel');
+        //     self::assertResponseStatusCodeSame(200);
+        //     self::assertPageTitleContains('Materiel');
 
-        // Use assertions to check that the properties are properly displayed.
-    }
+        //     // Use assertions to check that the properties are properly displayed.
+        // }
 
     public function testEdit(): void
     {
         $this->markTestIncomplete();
         $fixture = new Materiel();
-        $fixture->setName('My Title');
-        $fixture->setQuantity('My Title');
+        $fixture->setName('My TitleZ');
+        $fixture->setQuantity('20');
 
         $this->repository->add($fixture, true);
 
@@ -83,7 +83,7 @@ class MaterielControllerTest extends WebTestCase
 
         $this->client->submitForm('Update', [
             'materiel[name]' => 'Something New',
-            'materiel[quantity]' => 'Something New',
+            'materiel[quantity]' => '30',
         ]);
 
         self::assertResponseRedirects('/materiel/');
@@ -102,7 +102,7 @@ class MaterielControllerTest extends WebTestCase
 
         $fixture = new Materiel();
         $fixture->setName('My Title');
-        $fixture->setQuantity('My Title');
+        $fixture->setQuantity('25');
 
         $this->repository->add($fixture, true);
 
