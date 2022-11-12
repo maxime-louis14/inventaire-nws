@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Reservation;
-use App\service\MailerService;
+use App\Service\MailerService;
 use App\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,9 +22,9 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/emailRappel/{id}', name: 'app_emailrelance', methods: ["POST"])]
+    #[Route('/Rappelemail/{id}', name: 'app_emailrelance', methods: ["POST"])]
 
-    public function mail(MailerService $mailService, Reservation $reservation)
+    public function mail(MailerService $mailerService, Reservation $reservation)
     {
         $destinaire = $reservation->getEmail();
         $messageSubject = "Mail de relance";
@@ -39,7 +39,7 @@ class HomeController extends AbstractController
         La date à rendre :  $rendered    <br/>
         </p>
         ";
-        $mailService->sendMailer($destinaire, $messageSubject, $messageBody);
+        $mailerService->sendMailer($destinaire, $messageSubject, $messageBody);
         //    return new Response('oui' , Response::HTTP_OK);
         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
