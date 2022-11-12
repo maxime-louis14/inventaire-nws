@@ -56,7 +56,7 @@ class ReservationController extends AbstractController
              <p>Informations : 
                  <ul>
                      <li>Matériel : $product</li>
-                     <li>Date d'emprunt : $loandate</li>
+                     <li>date de prêt : $loandate</li>
                      <li>Date de retour du matériel : $rendered</li>
                  </ul>       
              </p>
