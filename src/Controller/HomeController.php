@@ -32,10 +32,10 @@ class HomeController extends AbstractController
         $loandate = $reservation->getLoandate()->format('d-m-Y H:i:s');
         $rendered = $reservation->getRendered()->format('d-m-Y H:i:s');
         $messageBody = "
-        <h1>Mail de relance matériel</h1>
+        <h1>Mail de relance matériel </h1>
         <p>
         A la date a la quelle vous avez emprunté : $loandate  <br/>
-        Vous avez emprunté le matériel  : $materiel <br/>
+        Vous avez réservé le matériel  : $materiel <br/>
         La date à rendre :  $rendered    <br/>
         </p>
         ";

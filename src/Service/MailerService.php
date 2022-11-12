@@ -2,25 +2,22 @@
 
 namespace App\Service;
 
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport;
+
+
 
 
 
 class MailerService
 {
-   
-    public function sendMailer(MailerInterface $mailer): void
-    {
-        $email = (new Email())
-        ->from('hello@example.com')
-        ->to('you@example.com')
-        ->subject('Time for Symfony Mailer!')
-        ->text('Sending emails is fun again!')
-        ->html('<p>See Twig integration for better HTML integration!</p>');
-
-    $mailer->send($email);
-
-        // ...
+    public function sendMailer($destinaire,$messageSubject, $messageBody,):void{
+        
+        $tgv = Transport::fromDsn('smtp://maximelouis321@gmail.com:hbkjjzkakuqnartj@smtp.gmail.com:587');
+        $mailer = new Mailer($tgv);
+        $email = (new Email())->from('maximelouis321@gmail.com')->to($destinaire)->subject($messageSubject)->html($messageBody);
+        $mailer->send($email);
     }
+
 }

@@ -52,7 +52,7 @@ class ReservationController extends AbstractController
              $destinaire = $reservation->getEmail();
              $rendered = $reservation->getRendered()->format("d-m-y H:i");
              $product = $reservation->getProduct()->getName();
-             $messageSubject =" <h1>Nous confirmons l'emprunt du matériel : $product</h1>
+             $messageSubject =" <h1>Nous confirmons la reservation du matériel : $product</h1>
              <p>Informations : 
                  <ul>
                      <li>Matériel : $product</li>
