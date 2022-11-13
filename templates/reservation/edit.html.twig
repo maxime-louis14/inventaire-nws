@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Reservation{% endblock %}
+{% block title %}Modifier la Reservation{% endblock %}
 
 {% block body %}
-    <h1>Edit Reservation</h1>
+    <h1>Modifier la Reservation</h1>
 
-    {{ include('reservation/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('reservation/_form.html.twig', {'button_label': 'sauvegarder'}) }}
 
-    <a href="{{ path('app_reservation_index') }}">back to list</a>
+ <a <button type="button" class="btn btn-info" href="{{ path('app_reservation_index') }}">Retour en arrière</button> </a>
 
     {{ include('reservation/_delete_form.html.twig') }}
 {% endblock %}
