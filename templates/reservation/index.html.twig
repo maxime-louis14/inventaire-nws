@@ -37,7 +37,7 @@
                 <td>{{ reservation.loandate ? reservation.loandate|date('d-m-Y H:i:s') : '' }}</td>
                 <td>{{ reservation.isrenderd ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a <button  class="btn btn-secondary" href="{{ path('app_reservation_show', {'id': reservation.id}) }}">Afficher</a> </button>
+                    {# <a <button  class="btn btn-secondary" href="{{ path('app_reservation_show', {'id': reservation.id}) }}">Afficher</a> </button> #}
                     <a <button  class="btn btn-primary" href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">Éditer</a> </button>
                 </td>
             </tr>
