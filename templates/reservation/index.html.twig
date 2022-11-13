@@ -2,7 +2,15 @@
 
 {% block title %}Reservation{% endblock %}
 
-{% block body %}
+{% block content %}
+
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 15  00px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
     <h1>Reservation</h1>
 
     <table class="table">
@@ -29,8 +37,8 @@
                 <td>{{ reservation.loandate ? reservation.loandate|date('d-m-Y H:i:s') : '' }}</td>
                 <td>{{ reservation.isrenderd ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a <button type="button" class="btn btn-secondary" href="{{ path('app_reservation_show', {'id': reservation.id}) }}">Afficher</a> </button>
-                    <a <button type="button" class="btn btn-primary" href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">Éditer</a> </button>
+                    <a <button  class="btn btn-secondary" href="{{ path('app_reservation_show', {'id': reservation.id}) }}">Afficher</a> </button>
+                    <a <button  class="btn btn-primary" href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">Éditer</a> </button>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +49,6 @@
         </tbody>
     </table>
 
-    <a <button type="button" class="btn btn-primary" href="{{ path('app_reservation_new') }}">Faire une réservation</a> </button>
+    <a <button class="btn btn-primary" href="{{ path('app_reservation_new') }}">Faire une réservation</a> </button>
+</div>
 {% endblock %}
