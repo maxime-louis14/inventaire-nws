@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reservation index{% endblock %}
+{% block title %}Reservation{% endblock %}
 
 {% block body %}
-    <h1>Reservation index</h1>
+    <h1>Reservation</h1>
 
     <table class="table">
         <thead>
@@ -29,17 +29,17 @@
                 <td>{{ reservation.loandate ? reservation.loandate|date('d-m-Y H:i:s') : '' }}</td>
                 <td>{{ reservation.isrenderd ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('app_reservation_show', {'id': reservation.id}) }}">show</a>
-                    <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">edit</a>
+                    <a <button type="button" class="btn btn-secondary" href="{{ path('app_reservation_show', {'id': reservation.id}) }}">Afficher</a> </button>
+                    <a <button type="button" class="btn btn-primary" href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">Éditer</a> </button>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_reservation_new') }}">Create new</a>
+    <a <button type="button" class="btn btn-primary" href="{{ path('app_reservation_new') }}">Faire une réservation</a> </button>
 {% endblock %}

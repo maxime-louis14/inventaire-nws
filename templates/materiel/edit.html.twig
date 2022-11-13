@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Materiel{% endblock %}
+{% block title %}Modifier le Matériel{% endblock %}
 
 {% block body %}
-    <h1>Edit Materiel</h1>
+    <h1>Modifier le Matériel</h1>
 
-    {{ include('materiel/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('materiel/_form.html.twig', {'button_label': 'sauvegarder'}) }}
 
-    <a href="{{ path('app_materiel_index') }}">back to list</a>
+    <a <button type="button" class="btn btn-info" href="{{ path('app_reservation_index') }}">Retour en arrière</button> </a>
 
     {{ include('materiel/_delete_form.html.twig') }}
 {% endblock %}

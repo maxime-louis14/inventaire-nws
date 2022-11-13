@@ -3,14 +3,14 @@
 {% block title %}Materiel index{% endblock %}
 
 {% block body %}
-    <h1>Materiel index</h1>
+    <h1>Materiel</h1>
 
     <table class="table">
         <thead>
             <tr>
                 {# <th>Id</th> #}
-                <th>Name</th>
-                <th>Quantity</th>
+                <th>Nom</th>
+                <th>Quantité</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,17 +21,17 @@
                 <td>{{ materiel.name }}</td>
                 <td>{{ materiel.quantity }}</td>
                 <td>
-                    <a href="{{ path('app_materiel_show', {'id': materiel.id}) }}">show</a>
-                    <a href="{{ path('app_materiel_edit', {'id': materiel.id}) }}">edit</a>
+                    <a <button type="button" class="btn btn-secondary"> href="{{ path('app_materiel_show', {'id': materiel.id}) }}">Afficher</a> </button>
+                    <a <button type="button" class="btn btn-primary" href="{{ path('app_materiel_edit', {'id': materiel.id}) }}">Éditer</a>   </button>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_materiel_new') }}">Create new</a>
+    <a <button type="button" class="btn btn-primary" href="{{ path('app_materiel_new') }}">Ajoutez un nouveau matériel</a> </button>
 {% endblock %}
