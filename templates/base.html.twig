@@ -18,8 +18,30 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}
-        
-        {% endblock %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+     <a class="navbar-brand" href={{path('app_home')}}>
+      <img src="https://cdn.discordapp.com/attachments/921330217153331201/1041276945771540480/Logo_nws.png" alt="" width="150" height="50">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ path('app_materiel_index')}}">Materiel</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_reservation_index')}}">reservation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_materiel_index')}}">Pricing</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+        {% block body %}{% endblock %}
     </body>
 </html>
