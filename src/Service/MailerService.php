@@ -14,8 +14,8 @@ class MailerService
 {
     public function sendMailer($destinaire,$messageSubject, $messageBody,):void{
         
-        $tgv = Transport::fromDsn('smtp://maximelouis321@gmail.com:hbkjjzkakuqnartj@smtp.gmail.com:587');
-        $mailer = new Mailer($tgv);
+        $bus = Transport::fromDsn('smtp://maximelouis321@gmail.com:hbkjjzkakuqnartj@smtp.gmail.com:587');
+        $mailer = new Mailer($bus);
         $email = (new Email())->from('maximelouis321@gmail.com')->to($destinaire)->subject($messageSubject)->html($messageBody);
         $mailer->send($email);
     }
