@@ -2,10 +2,14 @@
 
 {% block title %}Accueil{% endblock %}
 
-{% block body %}
+{% block content %} 
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 15  00px; width: 880px; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
 
-<link href="{{ asset('assets/css/index.css') }}" rel="stylesheet">
-
+<div class="example-wrapper">
+    
     <h1>Inventaire nws</h1>
     <table class="table table-striped table-hover table-bordered border-info">
         <thead>
@@ -30,4 +34,5 @@
         </tbody>
     </table>
 
+</div>
 {% endblock %}
