@@ -29,11 +29,9 @@ class MaterielController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $materielRepository->add($materiel, true);
             return $this->redirectToRoute('app_materiel_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('materiel/new.html.twig', [
             'materiel' => $materiel,
             'form' => $form,
@@ -56,10 +54,8 @@ class MaterielController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $materielRepository->add($materiel, true);
-
             return $this->redirectToRoute('app_materiel_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('materiel/edit.html.twig', [
             'materiel' => $materiel,
             'form' => $form,
