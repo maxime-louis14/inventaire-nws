@@ -53,7 +53,6 @@ class ReservationController extends AbstractController
               * Ici envoie du mail automatiquement une fois que la réservation et sauvegarder
               * On crée les variables ($loandate, $rendered, $destinaire, $product, $messageSubject) pour les utiliser pour le mail
               */
-
              $loandate = $reservation->getLoandate()->format("d-m-y H:i");
              $destinaire = $reservation->getEmail();
              $rendered = $reservation->getRendered()->format("d-m-y H:i");

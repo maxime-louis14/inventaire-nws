@@ -6,9 +6,9 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Transport;
 
-
-
-
+/**
+ * Ici, on se trouve la connexion SMTP et l'envoi du mail
+ */
 
 class MailerService
 {
