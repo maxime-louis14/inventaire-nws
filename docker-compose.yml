@@ -13,7 +13,8 @@ services:
     volumes:
       - mysql:/var/lib/mysql
   phpmyadmin:
-    image: pyd
+    container_name: pyd
+    image: phpmyadmin
     restart: always
     ports:
       - 8000:80
@@ -37,7 +38,7 @@ services:
     ports:
       - "9000:9000"
     volumes:
-    - ./:/var/www/html  
+      - ./:/var/www/html
     depends_on:
       - database
 volumes:
