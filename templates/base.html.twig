@@ -7,17 +7,17 @@
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">            
         <!-- Bootstrap core CSS -->
+        {# asset c'est pour que twig par chercher le fichier demandé #}
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/footer.css') }}" rel="stylesheet">
-
-        
+        <link href="{{ asset('assets/css/footer.css') }}" rel="stylesheet">        
     </head>
 
     <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
      <a class="navbar-brand" href={{path('app_home')}}>
-      <img src="https://cdn.discordapp.com/attachments/921330217153331201/1041276945771540480/Logo_nws.png" alt="" width="150" height="55">
+     {# src="{{ asset('public/assets/img/Logo_nws.png') }}" #}
+      <img src="https://cdn.discordapp.com/attachments/921330217153331201/1041276945771540480/Logo_nws.png" alt="logo_nws" width="150" height="55">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -27,14 +27,17 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ path('app_materiel_index')}}">Materiel</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item">       
+          {# Le href appelle le path du controller réservation et il redirige sur la route index  #}
           <a class="nav-link" href="{{ path('app_reservation_index')}}">Reservation</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-        {% block content %}{% endblock %}
+  {# Ici j'ai mon contenu qui vien (appeler) de home/index.html.twig #}
+        {% block content %}
+        {% endblock %}
  <!-- FOOTER -->
     <footer class="footer-custom">
         <p>&copy; Projet d'école Nws, <small> <a href="https://www.cnil.fr/fr/rgpd-par-ou-commencer">Rgpd</a> &middot; <a href="https://normandiewebschool.fr/">NWS</a> </small>

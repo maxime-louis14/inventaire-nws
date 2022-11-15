@@ -1,3 +1,6 @@
+{# 
+    Ici c'est le button de relance de mail qui appele src\Controller\HomeController.php
+ #}
 <form method="post" action="{{ path('app_emailrelance', {'id': enfant.id}) }}" onsubmit="return confirm('êtes vous sûr de vouloir envoyer un mail de relance ?');">
     <button class="btn btn-primary">relancer</button>
 </form>

@@ -25,7 +25,7 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/new', name: 'app_reservation_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ReservationRepository $reservationRepository, MailerService $mailerService ): Response
+    public function new(Request $request, ReservationRepository $reservationRepository, MailerService $mailerService): Response
     {
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
@@ -35,10 +35,12 @@ class ReservationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $reservation->setLoandate(new \DateTime());
+            // Je, mais le checkbox a false pour qu'il ne soit pas valide quand une nouvelle réservation se créait
+
             $reservation->setIsrenderd(false);
             // Je veux incrémentation et décrémentation les stocks de produit dans l'entity matereil
             // (La manière la plus basique et naturelle est l’utilisation du ‘+1’ ou ‘-1’) -$a Négation Opposé de $a.
-              
+
             /**
              *  En php orienté objet, on appelle ça les "getters" et "setters". Les fonctions "get"
              * permettent de récupérer la valeur d'une propriété, alors que les fonctions "set" permettent d'initialiser la valeur d'une propriété.
@@ -48,20 +50,19 @@ class ReservationController extends AbstractController
             // et product recuper les donnés de Quantity et le -1 retire une quantités
             $quantity = $reservation->getProduct()->getQuantity() - 1;
             $reservation->getProduct()->setQuantity($quantity);
-         
-             /**
-              * Ici envoie du mail automatiquement une fois que la réservation et sauvegarder
-              * On crée les variables ($loandate, $rendered, $destinaire, $product, $messageSubject) pour les utiliser pour le mail
-              */
 
-             $loandate = $reservation->getLoandate()->format("d-m-y H:i");
-             $destinaire = $reservation->getEmail();
-             $rendered = $reservation->getRendered()->format("d-m-y H:i");
-             $product = $reservation->getProduct()->getName();
-             /**
-              * Ici, on crée Le corps du mail qui utilise les variables du dessus
-              */
-             $messageSubject =" <h1>Nous confirmons la reservation du matériel : $product</h1>
+            /**
+             * Ici envoie du mail automatiquement une fois que la réservation et sauvegarder
+             * On crée les variables ($loandate, $rendered, $destinaire, $product, $messageSubject) pour les utiliser pour le mail
+             */
+            $loandate = $reservation->getLoandate()->format("d-m-y H:i");
+            $destinaire = $reservation->getEmail();
+            $rendered = $reservation->getRendered()->format("d-m-y H:i");
+            $product = $reservation->getProduct()->getName();
+            /**
+             * Ici, on crée Le corps du mail qui utilise les variables du dessus
+             */
+            $messageSubject = " <h1>Nous confirmons la reservation du matériel : $product</h1>
              <p>Informations : 
                  <ul>
                      <li>Matériel : $product</li>
@@ -73,8 +74,8 @@ class ReservationController extends AbstractController
             /**
              * Ici on appéle le mailer Service qui et dans src\Service\MailerService.php pour lutilisation du smtp
              */
-             $mailerService->sendMailer($destinaire, "Réservation : $product", $messageSubject);
-           
+            $mailerService->sendMailer($destinaire, "Réservation : $product", $messageSubject);
+
             $reservationRepository->add($reservation, true);
             $reservationRepository->save($reservation, true);
             return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
@@ -84,6 +85,8 @@ class ReservationController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    // C'est la route pour voir une réservation précise par ID
     #[Route('/{id}', name: 'app_reservation_show', methods: ['GET'])]
     public function show(Reservation $reservation): Response
     {
@@ -107,7 +110,6 @@ class ReservationController extends AbstractController
             // Si mon produit et rendu tu me rajoure +1 a la quantité et si il n'est pas rendu tu -1
             // tU FAIT PLUS 1 QUANT LE PRODUIT ET RENDU. 
             if ($oldrenderd != $reservation->isIsrenderd()) {
-
                 if ($reservation->isIsrenderd()) {
                     $product = $reservation->getProduct()->getQuantity() + 1;
                     $reservation->getProduct()->setQuantity($product);
@@ -117,10 +119,8 @@ class ReservationController extends AbstractController
                 }
             }
             $reservationRepository->add($reservation, true);
-
             return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('reservation/edit.html.twig', [
             'reservation' => $reservation,
             'form' => $form,
