@@ -50,7 +50,7 @@ class MaterielControllerTest extends WebTestCase
         $this->client->request('GET', sprintf('%snew', $this->path));
         self::assertResponseStatusCodeSame(200);
         $this->client->submitForm('sauvegarder', [
-            'materiel[name]' => 'le projet',
+            'materiel[name]' => 'leProjet',
             'materiel[quantity]' => '10',
         ]);
 
