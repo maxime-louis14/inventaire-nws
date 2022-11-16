@@ -22,7 +22,7 @@ COPY . .
 
 # RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
-RUN docker compose up -d 
+RUN docker compose up -d
 
 RUN docker compose exec php php /bin/phpunit
 
