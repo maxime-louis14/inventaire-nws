@@ -1,5 +1,5 @@
 <?php
-
+// c'est pas fou
 // namespace Test\Controller;
 
 // use App\Entity\Reservation;
