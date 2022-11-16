@@ -15,5 +15,5 @@ jobs:
         - run: docker compose up -d 
         - run: docker compose exec php composer install
         - run: docker compose exec php symfony console doctrine:database:create --env=test
-        - run: docker compose exec php symfony console doctrine:migrations:migrate -n --env=test
+        - run: docker compose exec php symfony console doctrine:migrations:migrate --env=test
         - run: docker compose exec php php bin/phpunit
