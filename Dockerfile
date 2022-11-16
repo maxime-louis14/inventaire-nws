@@ -16,14 +16,9 @@ RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | s
 
 RUN sudo apt install symfony-cli
 
-RUN composer install
-
 COPY . .
 
+RUN composer install
 # RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
-
-RUN docker compose up -d
-
-RUN docker compose exec php php /bin/phpunit
 
 RUN chown www-data:www-data -R .
