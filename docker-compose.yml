@@ -37,7 +37,7 @@ services:
       context: .
     ports:
       - "9000:9000"
-    volumes:
+    volumes: 
       - ./:/var/www/html
     depends_on:
       - database
