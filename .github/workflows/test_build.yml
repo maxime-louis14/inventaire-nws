@@ -15,7 +15,6 @@ jobs:
           docker compose exec php php bin/console doctrine:database:create --env=test
           docker compose exec php php bin/console doctrine:schema:update --env=test --force
           docker compose exec php php bin/phpunit
-
   build-docker:
     runs-on: ubuntu-latest
     steps:
@@ -25,7 +24,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: build and push to github registry
         uses: docker/build-push-action@v3
         with:
