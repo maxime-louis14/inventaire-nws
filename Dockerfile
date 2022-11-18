@@ -1,4 +1,5 @@
-FROM php:8.0-fpm
+FROM php:8.0-fpm AS inventaire
+
 
 RUN apt update \
     && apt install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip sudo \
@@ -16,14 +17,9 @@ RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | s
 
 RUN sudo apt install symfony-cli
 
-RUN composer install
-
 COPY . .
 
+RUN composer install
 # RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
-
-RUN docker compose up -d 
-
-RUN docker compose exec php php /bin/phpunit
 
 RUN chown www-data:www-data -R .
