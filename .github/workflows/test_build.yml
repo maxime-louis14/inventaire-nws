@@ -1,4 +1,7 @@
-on: [push]
+on:
+  push:
+    branches: [ "Dev" ]
+
 name: Build and test
 jobs:
   build:
