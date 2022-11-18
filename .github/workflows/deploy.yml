@@ -14,5 +14,5 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_IP }}
 
-      - run: ssh ${{ secrets.SSH_USER}}@${{ secrets.SSH_PC }}"cd inventaire & git pull"
-      - run: ssh ${{ secrets.SSH_USER}}@${{ secrets.SSH_PC }}"cd inventaire & docker compose up -d --build --force-recreate"
+      - run: ssh ${{ secrets.SSH_USER}}@${{  secrets.SSH_HOST }}"cd inventaire-nws-php & git pull"
+      - run: ssh ${{ secrets.SSH_USER}}@${{  secrets.SSH_HOST }}"cd inventaire-nws-php & docker compose up -d --build --force-recreate"
