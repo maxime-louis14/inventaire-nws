@@ -11,4 +11,29 @@ jobs:
           docker compose exec php composer install
           docker compose exec php php bin/console doctrine:database:create --env=test
           docker compose exec php php bin/console doctrine:schema:update --env=test --force
+<<<<<<< Updated upstream
           docker compose exec php php bin/phpunit
+=======
+<<<<<<< HEAD
+          docker compose exec php php bin/phpunit
+
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: login to github container
+        uses: docker/build-push-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.GITHUB_TOKEN }}
+      - name: build and push to github registry
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: ghcr.io/maxime-louis14/inventaire-nws-php
+          target: php
+      - run: docker image ls
+=======
+          docker compose exec php php bin/phpunit
+>>>>>>> 5ecfccdb52c6830aae554625466569f68b5809fe
+>>>>>>> Stashed changes
