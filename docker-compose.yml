@@ -2,7 +2,7 @@ version: "3"
 
 services:
   database:
-    container_name: BDD
+    container_name: bdd
     image: mysql:5.7
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -13,7 +13,7 @@ services:
     volumes:
       - mysql:/var/lib/mysql
   phpmyadmin:
-    container_name: pyd
+    container_name: phpmyadmin
     image: phpmyadmin
     restart: always
     ports:
@@ -21,7 +21,7 @@ services:
     environment:
       - PMA_ARBITRARY=1
   nginx:
-    container_name: nginxsite
+    container_name: nginxsite1
     image: nginx:stable-alpine
     ports:
       - "8080:80"
@@ -32,7 +32,7 @@ services:
       - php
       - database
   php:
-    container_name: symfony
+    container_name: symfonysite
     build:
       context: .
     ports:
