@@ -2,7 +2,7 @@ on:
   push:
     branches: [ "Dev" ]
 
-name: Build and test
+name: build-docker
 jobs:
   build:
     runs-on: ubuntu-latest

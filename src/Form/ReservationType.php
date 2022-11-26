@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Reservation;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,11 +27,13 @@ class ReservationType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'date du rendu',
             ))
+
             // ->add('loandate', DateTimeType::class, array(
             //     'widget' => 'single_text',
             //     'label' => 'date de prêt',
             //     '' => ''
             // ))
+
             ->add('product')
             ->add('isrenderd', CheckboxType::class, [
                 'label' => 'Rendu',

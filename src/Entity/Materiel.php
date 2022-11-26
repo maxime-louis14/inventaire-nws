@@ -53,6 +53,7 @@ class Materiel
 
     public function setQuantity(int $quantity): self
     {
+        
         $this->quantity = $quantity;
 
         return $this;

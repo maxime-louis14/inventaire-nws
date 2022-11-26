@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 namespace App\Controller;
 
@@ -47,7 +47,7 @@ class ReservationController extends AbstractController
             // et product recuper les donnés de Quantity et fait -1 retire une quantités
             $quantity = $reservation->getProduct()->getQuantity() - 1;
             $reservation->getProduct()->setQuantity($quantity);
-
+            
             // /**
             //  * Ici envoie du mail automatiquement une fois que la réservation et sauvegarder
             //  * On crée les variables ($loandate, $rendered, $destinaire, $product, $messageSubject) pour les utiliser pour le mail
@@ -69,7 +69,7 @@ class ReservationController extends AbstractController
             //             <li>Date de retour du matériel : $rendered</li>
             //         </ul>       
             //     </p>
-            //         <p>Merci de prendre soin du matériel</p>";
+            //         <p>Merci de prendre soin du matériel<p></p>";
 
             // /**
             //  * Ici on appéle le mailer Service qui et dans src\Service\MailerService.php pour lutilisation du smtp
