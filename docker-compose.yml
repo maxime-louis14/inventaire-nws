@@ -21,7 +21,7 @@ services:
     environment:
       - PMA_ARBITRARY=1
   nginx:
-    container_name: nginx
+    container_name: nginxsite
     image: nginx:stable-alpine
     ports:
       - "8080:80"
