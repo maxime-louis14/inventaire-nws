@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 namespace App\Controller;
 
@@ -18,11 +18,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ReservationController extends AbstractController
 {
     #[Route('/', name: 'app_reservation_index', methods: ['GET'])]
-    public function index(ReservationRepository $reservationRepository): Response
+    public function index(ReservationRepository $reservationRepository,  CallApiService $collApiService): Response
     {
+        
+            $eleve = $collApiService->getDataNws();
+          // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
+          foreach ($eleve as $key => $value) {
+            echo $key . '<br/>';
+            if (is_array($value)) {
+                foreach ($value as $key => $value) {
+                    echo $key . " : " . $value . "<br/>";
+                }
+            }
+        };
 
         return $this->render('reservation/index.html.twig', [
             'reservations' => $reservationRepository->findAll(),
+
+
         ]);
     }
 
@@ -31,11 +44,16 @@ class ReservationController extends AbstractController
     public function new(Request $request, ReservationRepository $reservationRepository, MailerService $mailerService, CallApiService $collApiService): Response
     {
         $reservation = new Reservation();
+        $eleve = $collApiService->getDataNws();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
+        // dd($eleve);
+    
+
         // Si m'ont formulaire et envoyait et valide, tu ajoutes une nouvelle date et tu enlèves une quantité à ce produit
         if ($form->isSubmitted() && $form->isValid()) {
+
             $reservation->setLoandate(new \DateTime());
             // Je, mais le checkbox a false pour qu'il ne soit pas valide quand une nouvelle réservation se créait
             $reservation->setIsrenderd(false);
@@ -46,7 +64,7 @@ class ReservationController extends AbstractController
             // et product recuper les donnés de Quantity et fait -1 retire une quantités
             $quantity = $reservation->getProduct()->getQuantity() - 1;
             $reservation->getProduct()->setQuantity($quantity);
-            
+
             // /**
             //  * Ici envoie du mail automatiquement une fois que la réservation et sauvegarder
             //  * On crée les variables ($loandate, $rendered, $destinaire, $product, $messageSubject) pour les utiliser pour le mail
