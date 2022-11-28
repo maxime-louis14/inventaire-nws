@@ -13,7 +13,11 @@ services:
     volumes:
       - mysql:/var/lib/mysql
   phpmyadmin:
+<<<<<<< Updated upstream
     container_name: phpmyadmin
+=======
+    container_name: pydSite
+>>>>>>> Stashed changes
     image: phpmyadmin
     restart: always
     ports:
@@ -21,7 +25,11 @@ services:
     environment:
       - PMA_ARBITRARY=1
   nginx:
+<<<<<<< Updated upstream
     container_name: nginxsite1
+=======
+    container_name: nginxsiteUn
+>>>>>>> Stashed changes
     image: nginx:stable-alpine
     ports:
       - "8080:80"
@@ -32,7 +40,11 @@ services:
       - php
       - database
   php:
+<<<<<<< Updated upstream
     container_name: symfonysite
+=======
+    container_name: symfonyUn
+>>>>>>> Stashed changes
     build:
       context: .
     ports:
