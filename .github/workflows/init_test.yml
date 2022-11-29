@@ -1,6 +1,8 @@
 on:
   push:
     branches: [ "Dev" ]
+  pull_request:
+    branches: [ "main" ]
 
 name: build-docker
 jobs:
