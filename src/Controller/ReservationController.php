@@ -20,18 +20,18 @@ class ReservationController extends AbstractController
     #[Route('/', name: 'app_reservation_index', methods: ['GET'])]
     public function index(ReservationRepository $reservationRepository, CallApiService $collApiService): Response
     {
-        $reservations = $reservationRepository->findAll();
-        $eleve = $collApiService->getDataNws();
+        // $reservations = $reservationRepository->findAll();
+        // $eleve = $collApiService->getDataNws();
 
-        // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
-        foreach ($eleve as $key => $value) {
-            echo $key . '<br/>';
-            if (is_array($value)) {
-                foreach ($value as $key => $value) {
-                    echo $key . " : " . $value . "<br/>";
-                }
-            }
-        };
+        // // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
+        // foreach ($eleve as $key => $value) {
+        //     echo $key . '<br/>';
+        //     if (is_array($value)) {
+        //         foreach ($value as $key => $value) {
+        //             echo $key . " : " . $value . "<br/>";
+        //         }
+        //     }
+        // };
 
         return $this->render('reservation/index.html.twig', [
             
