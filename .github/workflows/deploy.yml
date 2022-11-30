@@ -1,5 +1,9 @@
 name: deploy
 
+on:
+  pull_request:
+    branches: ["main"]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -14,7 +18,3 @@ jobs:
 
       - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"cd inventaire-nws-php & git pull"
       - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"cd inventaire-nws-php & docker compose up -d --build --force-recreate"
-
-on:
-  pull_request:
-    branches: ["main"]

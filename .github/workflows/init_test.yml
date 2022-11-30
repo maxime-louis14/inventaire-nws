@@ -1,6 +1,9 @@
 name: build-docker
 
-
+on:
+  pull_request:
+    branches: 
+    - "main"
 
 jobs:
   build:
@@ -30,7 +33,3 @@ jobs:
           push: true
           tags: ghcr.io/maxime-louis14/inventaire-nws-php:latest
           target: inventaire
-on:
-  pull_request:
-    branches: 
-    - "main"
