@@ -33,6 +33,9 @@ class Reservation
     #[ORM\JoinColumn(nullable: false)]
     private $product;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $idapi;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -111,6 +114,18 @@ class Reservation
     public function setProduct(?Materiel $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getIdapi(): ?int
+    {
+        return $this->idapi;
+    }
+
+    public function setIdapi(?int $idapi): self
+    {
+        $this->idapi = $idapi;
 
         return $this;
     }

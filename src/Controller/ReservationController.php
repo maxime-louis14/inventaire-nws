@@ -18,12 +18,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ReservationController extends AbstractController
 {
     #[Route('/', name: 'app_reservation_index', methods: ['GET'])]
-    public function index(ReservationRepository $reservationRepository,  CallApiService $collApiService): Response
+    public function index(ReservationRepository $reservationRepository, CallApiService $collApiService): Response
     {
-        
-            $eleve = $collApiService->getDataNws();
-          // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
-          foreach ($eleve as $key => $value) {
+        $reservations = $reservationRepository->findAll();
+        $eleve = $collApiService->getDataNws();
+
+        // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
+        foreach ($eleve as $key => $value) {
             echo $key . '<br/>';
             if (is_array($value)) {
                 foreach ($value as $key => $value) {
@@ -33,9 +34,7 @@ class ReservationController extends AbstractController
         };
 
         return $this->render('reservation/index.html.twig', [
-            'reservations' => $reservationRepository->findAll(),
-
-
+            
         ]);
     }
 
@@ -49,7 +48,7 @@ class ReservationController extends AbstractController
         $form->handleRequest($request);
 
         // dd($eleve);
-    
+
 
         // Si m'ont formulaire et envoyait et valide, tu ajoutes une nouvelle date et tu enlèves une quantité à ce produit
         if ($form->isSubmitted() && $form->isValid()) {
