@@ -1,8 +1,5 @@
 name: automerge
-on:
-  pull_request:
-    branches: 
-    - "main"
+
     
 jobs:
   automerge:
@@ -13,4 +10,8 @@ jobs:
       env:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"        
         MERGE_LABELS: "automerge"
-        
+
+on:
+  pull_request:
+    branches: 
+    - "main"
