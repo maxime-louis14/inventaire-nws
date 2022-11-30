@@ -32,7 +32,7 @@ services:
       - php
       - database
   php:
-    container_name: symfonysiteUn
+    container_name: php
     build:
       context: .
     ports:
