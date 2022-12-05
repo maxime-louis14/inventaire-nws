@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Form\ReservationType;
-use App\Service\MailerService;
-use App\Service\CallApiService;
 use App\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,32 +16,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ReservationController extends AbstractController
 {
     #[Route('/', name: 'app_reservation_index', methods: ['GET'])]
-    public function index(ReservationRepository $reservationRepository, CallApiService $collApiService): Response
+    public function index(ReservationRepository $reservationRepository): Response
     {
-        $etudiant = $reservationRepository->findBy(array('isrenderd' => false));
-
-        $eleve = $collApiService->getDataNws();
-        $array = [];
-
-        // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
-        foreach ($eleve as $value) {
-            //  echo $key . '<br/>';
-            if (is_array($value)) {
-                foreach ($value as $value) {
-                     echo $value . "<br/>";
-                    array_push($array, $value);
-                }
-            }
-        };
-        
-        // foreach($etudiant as $reservation){
-        //     if($etudiant['id'] == $reservation->getIdapi()) {
-        //         dd($etudiant);
-        //     }   
-        //       echo $reservation . " : " . $etudiant ;
-        // }
-          dd($array);
-
+    
         return $this->render('reservation/index.html.twig', [
             'reservations' => $reservationRepository->findAll(),
         ]);
