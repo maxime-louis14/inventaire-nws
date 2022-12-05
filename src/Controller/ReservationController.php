@@ -20,30 +20,29 @@ class ReservationController extends AbstractController
     #[Route('/', name: 'app_reservation_index', methods: ['GET'])]
     public function index(ReservationRepository $reservationRepository, CallApiService $collApiService): Response
     {
-        // $etudiant = $reservationRepository->findBy(array('isrenderd' => false));
+        $etudiant = $reservationRepository->findBy(array('isrenderd' => false));
 
         $eleve = $collApiService->getDataNws();
         $array = [];
 
         // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
-        foreach ($eleve as $key => $value) {
-            // echo $key . '<br/>';
+        foreach ($eleve as $value) {
+            //  echo $key . '<br/>';
             if (is_array($value)) {
-                foreach ($value as $key => $value) {
-                    // echo $key . " : " . $value . "<br/>";
+                foreach ($value as $value) {
+                     echo $value . "<br/>";
                     array_push($array, $value);
-
-                    // foreach ($etudiant as $reservation) {
-                    //     if ($eleve['id'] == $reservation->getIdapi()) {
-                    //         // array_push($array, $value);
-                    //     }
-                    // }    // dd($array);
                 }
             }
         };
-
-
-        dd($array);
+        
+        // foreach($etudiant as $reservation){
+        //     if($etudiant['id'] == $reservation->getIdapi()) {
+        //         dd($etudiant);
+        //     }   
+        //       echo $reservation . " : " . $etudiant ;
+        // }
+          dd($array);
 
         return $this->render('reservation/index.html.twig', [
             'reservations' => $reservationRepository->findAll(),
