@@ -20,6 +20,8 @@ class ReservationController extends AbstractController
     public function index(ReservationRepository $reservationRepository, CallApiService $collApiService): Response
     {
 
+        $reservations = $reservationRepository->findBy(array('isrenderd' => false));
+
         $idapi = $collApiService->getDataNws();
         $array = [];
 
@@ -33,17 +35,20 @@ class ReservationController extends AbstractController
                 }
             }
         };
-
+        // array_map applique une function au element du tableau
         $array = array_map(function ($e) {
             return [
                 'id' => $e['id']
             ];
         }, $idapi);
+        // dd($array);
+        // le $array a bien les id de l'api
+        // Je veux envoyer c'est donner en bdd
 
 
-    
+        $reservationRepository->add($reservations, true);
         return $this->render('reservation/index.html.twig', [
-            'reservations' => $reservationRepository->findAll(),
+            'reservations' => $array,
         ]);
     }
 
