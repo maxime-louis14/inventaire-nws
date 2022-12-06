@@ -11,6 +11,7 @@ services:
       MYSQL_PASSWORD: user
     volumes:
       - mysql:/var/lib/mysql
+      
   phpmyadmin:
     container_name: pydSite
 
