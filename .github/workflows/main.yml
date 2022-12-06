@@ -7,6 +7,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+
       - run: |
           mkdir -p ~/.ssh
           ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
@@ -15,6 +16,6 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
-      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose -f docker compose.prod.yml pull"
-      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose -f docker compose.prod.yml up -d"
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose -f docker-compose.prod.yml pull"
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose -f docker-compose.prod.yml up -d"
       - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker image prune -f"
