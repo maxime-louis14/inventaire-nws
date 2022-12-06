@@ -1,8 +1,9 @@
+name: build-docker-test
+
 on:
   push:
-    branches: [ "Dev" ]
+    branches: [Dev]
 
-name: Build and test
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,6 +16,7 @@ jobs:
           docker compose exec php php bin/console doctrine:database:create --env=test
           docker compose exec php php bin/console doctrine:schema:update --env=test --force
           docker compose exec php php bin/phpunit
+
   build-docker:
     runs-on: ubuntu-latest
     steps:
@@ -29,5 +31,4 @@ jobs:
         with:
           push: true
           tags: ghcr.io/maxime-louis14/inventaire-nws-php:latest
-          target: inventaire 
-
+          target: inventaire

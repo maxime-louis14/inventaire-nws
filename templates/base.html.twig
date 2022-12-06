@@ -12,29 +12,29 @@
         <link href="{{ asset('assets/css/footer.css') }}" rel="stylesheet">        
     </head>
 
-    <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-     <a class="navbar-brand" href={{path('app_home')}}>
-     {# src="{{ asset('public/assets/img/Logo_nws.png') }}" #}
-      <img src="https://cdn.discordapp.com/attachments/921330217153331201/1041276945771540480/Logo_nws.png" alt="logo_nws" width="150" height="55">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ path('app_materiel_index')}}">Materiel</a>
-        </li>
-        <li class="nav-item">       
-          {# Le href appelle le path du controller réservation et il redirige sur la route index  #}
-          <a class="nav-link" href="{{ path('app_reservation_index')}}">Reservation</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href={{path('app_home')}}>
+          {# src="{{ asset('public/assets/img/Logo_nws.png') }}" #}
+          <img src="https://cdn.discordapp.com/attachments/921330217153331201/1041276945771540480/Logo_nws.png" alt="logo_nws" width="150" height="55">
+        </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ path('app_materiel_index')}}">Materiel</a>
+              </li>
+              <li class="nav-item">       
+                {# Le href appelle le path du controller réservation et il redirige sur la route index  #}
+                <a class="nav-link" href="{{ path('app_reservation_index')}}">Reservation</a>
+              </li>
+            </ul>
+        </div>
+      </div>
+  </nav>
   {# Ici j'ai mon contenu qui vien (appeler) de home/index.html.twig #}
         {% block content %}
         {% endblock %}
@@ -45,5 +45,5 @@
     </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
-    </body>
+</body>
 </html>
