@@ -19,7 +19,7 @@ class HomeController extends AbstractController
 
         $eleve = $collApiService->getDataNws();
         $array = [];
-       
+
         // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
         foreach ($eleve as $key => $value) {
             //  echo $key . '<br/>';
@@ -27,12 +27,16 @@ class HomeController extends AbstractController
                 foreach ($value as $key => $value) {
                     echo '' . $key . ' ' . $value . "<br/>";
                     array_push($array, $key, $value);
-                   
                 }
-                
             }
         };
 
+        $array = array_map(function ($e) {
+            return [
+                'id' => $e['id']
+            ];
+        }, $eleve);
+        dd($array);
 
 
 
