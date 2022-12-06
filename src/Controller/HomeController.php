@@ -17,10 +17,6 @@ class HomeController extends AbstractController
     {
         $enfants = $reservationRepository->findBy(array('isrenderd' => false));
 
-        
-      
-
-
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'enfants' => $enfants
