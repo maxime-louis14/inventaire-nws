@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Form\ReservationType;
-use App\Service\MailerService;
 use App\Service\CallApiService;
 use App\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,34 +19,42 @@ class ReservationController extends AbstractController
     #[Route('/', name: 'app_reservation_index', methods: ['GET'])]
     public function index(ReservationRepository $reservationRepository, CallApiService $collApiService): Response
     {
-        // $reservations = $reservationRepository->findAll();
-        // $eleve = $collApiService->getDataNws();
 
-        // // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
-        // foreach ($eleve as $key => $value) {
-        //     echo $key . '<br/>';
-        //     if (is_array($value)) {
-        //         foreach ($value as $key => $value) {
-        //             echo $key . " : " . $value . "<br/>";
-        //         }
-        //     }
-        // };
+        $idapi = $collApiService->getDataNws();
+        $array = [];
 
+        // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
+        foreach ($idapi as $key => $value) {
+            //  echo $key . '<br/>';
+            if (is_array($value)) {
+                foreach ($value as $key => $value) {
+                    // echo '' . $key . ' ' . $value . "<br/>";
+                    array_push($array, $key, $value);
+                }
+            }
+        };
+
+        $array = array_map(function ($e) {
+            return [
+                'id' => $e['id']
+            ];
+        }, $idapi);
+
+
+    
         return $this->render('reservation/index.html.twig', [
-            
+            'reservations' => $reservationRepository->findAll(),
         ]);
     }
 
 
     #[Route('/new', name: 'app_reservation_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ReservationRepository $reservationRepository, MailerService $mailerService, CallApiService $collApiService): Response
+    public function new(Request $request, ReservationRepository $reservationRepository): Response
     {
         $reservation = new Reservation();
-        $eleve = $collApiService->getDataNws();
+
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
-
-        // dd($eleve);
 
 
         // Si m'ont formulaire et envoyait et valide, tu ajoutes une nouvelle date et tu enlèves une quantité à ce produit
@@ -64,32 +71,6 @@ class ReservationController extends AbstractController
             $quantity = $reservation->getProduct()->getQuantity() - 1;
             $reservation->getProduct()->setQuantity($quantity);
 
-            // /**
-            //  * Ici envoie du mail automatiquement une fois que la réservation et sauvegarder
-            //  * On crée les variables ($loandate, $rendered, $destinaire, $product, $messageSubject) pour les utiliser pour le mail
-            //  */
-
-            // $loandate = $reservation->getLoandate()->format("d-m-y H:i");
-            // $destinaire = $reservation->getEmail();
-            // $rendered = $reservation->getRendered()->format("d-m-y H:i");
-            // $product = $reservation->getProduct()->getName();
-            // /**
-            //  * Ici, on crée Le corps du mail qui utilise les variables du dessus
-            //  */
-            // $messageSubject = " <h1>Nous confirmons la reservation du matériel : $product</h1>
-            //     <p>Informations : 
-            //         <ul>
-            //             <li>Matériel : $product</li>
-            //             <li>date de prêt : $loandate</li>
-            //             <li>Date de retour du matériel : $rendered</li>
-            //         </ul>       
-            //     </p>
-            //         <p>Merci de prendre soin du matériel<p></p>";
-
-            // /**
-            //  * Ici on appéle le mailer Service qui et dans src\Service\MailerService.php pour lutilisation du smtp
-            //  */
-            // $mailerService->sendMailer($destinaire, "Réservation : $product", $messageSubject);
 
             $reservationRepository->add($reservation, true);
             $reservationRepository->save($reservation, true);
