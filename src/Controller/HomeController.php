@@ -13,32 +13,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(ReservationRepository $reservationRepository, CallApiService $collApiService): Response
+    public function index(ReservationRepository $reservationRepository): Response
     {
         $enfants = $reservationRepository->findBy(array('isrenderd' => false));
 
-        $eleve = $collApiService->getDataNws();
-        $array = [];
-       
-        // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
-        foreach ($eleve as $key => $value) {
-            //  echo $key . '<br/>';
-            if (is_array($value)) {
-                foreach ($value as $key => $value) {
-                    echo '' . $key . ' ' . $value . "<br/>";
-                    array_push($array, $key, $value);
-                   
-                }
-                
-            }
-        };
-
-
+        
+      
 
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'enfants' => $array
+            'enfants' => $enfants
         ]);
     }
 

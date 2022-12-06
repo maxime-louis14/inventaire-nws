@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Form\ReservationType;
+use App\Service\CallApiService;
 use App\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,8 +17,30 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ReservationController extends AbstractController
 {
     #[Route('/', name: 'app_reservation_index', methods: ['GET'])]
-    public function index(ReservationRepository $reservationRepository): Response
+    public function index(ReservationRepository $reservationRepository, CallApiService $collApiService): Response
     {
+
+        $idapi = $collApiService->getDataNws();
+        $array = [];
+
+        // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
+        foreach ($idapi as $key => $value) {
+            //  echo $key . '<br/>';
+            if (is_array($value)) {
+                foreach ($value as $key => $value) {
+                    // echo '' . $key . ' ' . $value . "<br/>";
+                    array_push($array, $key, $value);
+                }
+            }
+        };
+
+        $array = array_map(function ($e) {
+            return [
+                'id' => $e['id']
+            ];
+        }, $idapi);
+
+
     
         return $this->render('reservation/index.html.twig', [
             'reservations' => $reservationRepository->findAll(),
