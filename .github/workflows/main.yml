@@ -1,4 +1,5 @@
 name: CD
+
 on:
   push:
     branches: [main]
@@ -14,7 +15,6 @@ jobs:
       - uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
-
       - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose -f docker-compose.prod.yml pull"
       - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose -f docker-compose.prod.yml up -d"
-      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker image prune -f"
+
