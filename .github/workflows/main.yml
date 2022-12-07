@@ -16,8 +16,6 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
-          
-      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker-compose -f docker-compose.prod.yml pull"
-      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker-compose -f docker-compose.prod.yml up -d"
-
-
+          # Mode sale
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "git pull"
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose up -d --build"
