@@ -12,10 +12,10 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
+
       - uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
-
-      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd inventaire-nws-php && git pull"
-      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd inventaire-nws-php && docker compose up -d --build"
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd inventaire-nws && git pull"
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd inventaire-nws && docker compose up -d --build"
