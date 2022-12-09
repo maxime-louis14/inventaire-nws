@@ -1,5 +1,6 @@
 FROM php:8.0-fpm AS inventaire
 
+RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
 
 RUN apt update \
     && apt install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip sudo \
@@ -20,6 +21,7 @@ RUN sudo apt install symfony-cli
 COPY . .
 
 RUN composer install
+
 # RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 RUN chown www-data:www-data -R .
