@@ -34,6 +34,7 @@ class ReservationController extends AbstractController
                     array_push($array, $key, $value);
                 }
             }
+            
         };
         // array_map applique une function au element du tableau
         $array = array_map(function ($e) {
@@ -47,7 +48,7 @@ class ReservationController extends AbstractController
 
 
         return $this->render('reservation/index.html.twig', [
-            'reservations' => $array,
+            'reservations' => $reservationRepository->findAll(),
         ]);
     }
 
