@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Reservation;
+use App\Service\CallApiService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Email;
@@ -15,14 +16,34 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class ReservationType extends AbstractType
 {
+
+    private $collapiservice;
+
+    public function __construct(CallApiService $collapiservice)
+    {
+     $this->collapiservice = $collapiservice;
+    }
+
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        
+
+       $eleveForm = $this->collapiservice->getDataNws();
+       $array = [];
+
+       foreach ($eleveForm as $array) {
+        if (condition) {
+            # code...
+        }
+       }
+
+     
 
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom'
             ])
+
             ->add('email', EmailType::class, array(
                 'attr' => array('placeholder' => 'Votre adresse e-mail'),
                 'constraints' => array(

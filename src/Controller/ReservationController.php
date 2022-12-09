@@ -46,7 +46,6 @@ class ReservationController extends AbstractController
         // Je veux envoyer c'est donner en bdd
 
 
-        $reservationRepository->add($reservations, true);
         return $this->render('reservation/index.html.twig', [
             'reservations' => $array,
         ]);
