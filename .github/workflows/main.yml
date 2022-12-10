@@ -10,29 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: |
-          docker compose up -d
-          docker compose exec php composer install
-          docker compose exec php php bin/console doctrine:database:create --env=test
-          docker compose exec php php bin/console doctrine:schema:update --env=test --force
-          docker compose exec php php bin/phpunit
-
-  build-docker:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: login to github container regestry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: build and push to github registry
-        uses: docker/build-push-action@v3
-        with:
-          push: true
-          tags: ghcr.io/maxime-louis14/inventaire-nws-php:latest
-          target: inventaire
-
   deploy:
     runs-on: ubuntu-20.04
     steps:
