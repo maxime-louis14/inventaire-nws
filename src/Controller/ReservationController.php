@@ -45,7 +45,7 @@ class ReservationController extends AbstractController
         // dd($array);
         // le $array a bien les id de l'api
         // Je veux envoyer c'est donner en bdd
-        return $array;
+        
 
         return $this->render('reservation/index.html.twig', [
             'reservations' => $reservationRepository->findAll(),
