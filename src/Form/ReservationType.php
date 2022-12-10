@@ -28,28 +28,28 @@ class ReservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
-        $idapi = $this->collapiservice->getDataNws();
-        $array = [];
+        // $idapi = $this->collapiservice->getDataNws();
+        // $array = [];
 
-        // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
-        foreach ($idapi as $key => $value) {
-            //  echo $key . '<br/>';
-            if (is_array($value)) {
-                foreach ($value as $key => $value) {
-                    // echo '' . $key . ' ' . $value . "<br/>";
-                    array_push($array, $key, $value);
-                }
-            }
-        };
-        // array_map applique une function au element du tableau
-        $array = array_map(function ($e) {
-            return [
-                'id' => $e['id']
-            ];
-        }, $array);
-        // dd($array);
-        // le $array a bien les id de l'api
-        // Je veux envoyer c'est donner en bdd
+        // // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
+        // foreach ($idapi as $key => $value) {
+        //     //  echo $key . '<br/>';
+        //     if (is_array($value)) {
+        //         foreach ($value as $key => $value) {
+        //             // echo '' . $key . ' ' . $value . "<br/>";
+        //             array_push($array, $key, $value);
+        //         }
+        //     }
+        // };
+        // // array_map applique une function au element du tableau
+        // $array = array_map(function ($e) {
+        //     return [
+        //         'id' => $e['id']
+        //     ];
+        // }, $array);
+        // // dd($array);
+        // // le $array a bien les id de l'api
+        // // Je veux envoyer c'est donner en bdd
 
 
 
