@@ -39,7 +39,7 @@ class ReservationType extends AbstractType
             // dd($values);
             foreach($values as $key => $value)
             {
-                dd($value);
+                // dd($value);
                 array_push($array, [$key, $value]);
                 // echo '' . $key . ' ' . $value . "<br/>";
                 // dd($values, $key, $value);
@@ -82,7 +82,14 @@ class ReservationType extends AbstractType
             ->add('name', ChoiceType::class, [
                 'label' => 'Nom',
                 'choices' => [
-                    'nom' => 'nan'
+                    "j'ai pas réussi" => "j'ai pas réussi"
+                ]
+            ])
+
+            ->add('email', ChoiceType::class, [
+                'label' => 'email',
+                'choices' => [
+                    "j'ai pas réussi" => "j'ai pas réussi"
                 ]
             ])
 
@@ -93,13 +100,13 @@ class ReservationType extends AbstractType
             // ])
 
 
-            ->add('email', EmailType::class, array(
-                'attr' => array('placeholder' => 'Votre adresse e-mail'),
-                'constraints' => array(
-                    new NotBlank(array("message" => "Veuillez fournir un email valide")),
-                    new Email(array("message" => "Votre email ne semble pas valide")),
-                )
-            ))
+            // ->add('email', EmailType::class, array(
+            //     'attr' => array('placeholder' => 'Votre adresse e-mail'),
+            //     'constraints' => array(
+            //         new NotBlank(array("message" => "Veuillez fournir un email valide")),
+            //         new Email(array("message" => "Votre email ne semble pas valide")),
+            //     )
+            // ))
 
             /**
              * Le format des données d' entrée - c'est-à-dire
