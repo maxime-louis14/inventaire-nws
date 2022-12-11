@@ -36,19 +36,20 @@ class ReservationType extends AbstractType
         // pour chaque
         foreach ($eleve as $values)
         {
+            // dd($values);
             foreach($values as $key => $value)
             {
+                dd($value);
                 array_push($array, [$key, $value]);
                 // echo '' . $key . ' ' . $value . "<br/>";
                 // dd($values, $key, $value);
-                
+
             }
         }
 
+        
         // dd($array);
         
-        
-
         // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
         // foreach ($eleve as $key => $value) {
         //     //  echo $key . '<br/>';
