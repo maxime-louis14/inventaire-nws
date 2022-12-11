@@ -82,14 +82,14 @@ class ReservationType extends AbstractType
             ->add('name', ChoiceType::class, [
                 'label' => 'Nom',
                 'choices' => [
-                    "j'ai pas réussi" => "j'ai pas réussi"
+                    "Je n'ai pas réussi" => "Je n'ai pas réussi"
                 ]
             ])
 
             ->add('email', ChoiceType::class, [
                 'label' => 'email',
                 'choices' => [
-                    "j'ai pas réussi" => "j'ai pas réussi"
+                    "Je n'ai pas réussi" => "Je n'ai pas réussi"
                 ]
             ])
 
