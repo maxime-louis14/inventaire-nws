@@ -17,14 +17,13 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class ReservationType extends AbstractType
 {
-
+    
     private $collapiservice;
 
     public function __construct(CallApiService $collapiservice)
     {
         $this->collapiservice = $collapiservice;
     }
-
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -34,11 +33,9 @@ class ReservationType extends AbstractType
 
         // dd($eleve);
         // pour chaque
-        foreach ($eleve as $values)
-        {
+        foreach ($eleve as $values) {
             // dd($values);
-            foreach($values as $key => $value)
-            {
+            foreach ($values as $key => $value) {
                 // dd($value);
                 array_push($array, [$key, $value]);
                 // echo '' . $key . ' ' . $value . "<br/>";
@@ -47,9 +44,12 @@ class ReservationType extends AbstractType
             }
         }
 
-        
+
         // dd($array);
-        
+            // foreach ($array as $values) {
+            //     dd($values);
+            // }
+
         // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
         // foreach ($eleve as $key => $value) {
         //     //  echo $key . '<br/>';
@@ -82,14 +82,14 @@ class ReservationType extends AbstractType
             ->add('name', ChoiceType::class, [
                 'label' => 'Nom',
                 'choices' => [
-                    "j'ai pas réussi" => "j'ai pas réussi"
+                    "Je n'ai pas réussi" => "Je n'ai pas réussi"
                 ]
             ])
 
             ->add('email', ChoiceType::class, [
                 'label' => 'email',
                 'choices' => [
-                    "j'ai pas réussi" => "j'ai pas réussi"
+                    "Je n'ai pas réussi" => "Je n'ai pas réussi"
                 ]
             ])
 
