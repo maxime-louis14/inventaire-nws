@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
@@ -28,40 +29,67 @@ class ReservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
-        // $idapi = $this->collapiservice->getDataNws();
-        // $array = [];
+        $eleve = $this->collapiservice->getDataNws();
+        $array = [];
 
-        // // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
-        // foreach ($idapi as $key => $value) {
+        // dd($eleve);
+        // pour chaque
+        foreach ($eleve as $values)
+        {
+            foreach($values as $key => $value)
+            {
+                array_push($array, [$key, $value]);
+                // echo '' . $key . ' ' . $value . "<br/>";
+                // dd($values, $key, $value);
+                
+            }
+        }
+
+        // dd($array);
+        
+        
+
+        // Je passe dans les tableaux pour recupérer tout les données id, nom, prenom, mail.
+        // foreach ($eleve as $key => $value) {
         //     //  echo $key . '<br/>';
         //     if (is_array($value)) {
         //         foreach ($value as $key => $value) {
-        //             // echo '' . $key . ' ' . $value . "<br/>";
-        //             array_push($array, $key, $value);
+        //              dd($value, $key);
+        //             //  echo '' . $key . ' ' . $value . "<br/>";
+        //             array_push($array, [$value, $key]);
+        //         //    dd($array);
         //         }
         //     }
         // };
-        // // array_map applique une function au element du tableau
-        // $array = array_map(function ($e) {
-        //     return [
-        //         'id' => $e['id']
-        //     ];
-        // }, $array);
-        // // dd($array);
-        // // le $array a bien les id de l'api
+
+        // dd($array);
+        // J'ai toute les données dans le tableau array mais il ne sont ranger
+
+
+        // array_map applique une function au element du tableau
+        $array = array_map(function ($e) {
+            return [
+                'id' => $e['id']
+            ];
+        }, $eleve); // ici c'est bien le getDataNws
+
+        //  dd($array);
+        // le $array a bien les id de l'api
         // // Je veux envoyer c'est donner en bdd
 
-
-
-
         $builder
-            ->add('name', TextType::class, [
-                'label' => 'Nom'
+            ->add('name', ChoiceType::class, [
+                'label' => 'Nom',
+                'choices' => [
+                    'nom' => 'nan'
+                ]
             ])
 
-            ->add('idapi',  ChoiceType::class, [
-                'choices' => $array,
-            ])
+            // ->add('idapi',  ChoiceType::class, [
+            //     'choices' => [
+            //         'name' => 'id',
+            //     ],
+            // ])
 
 
             ->add('email', EmailType::class, array(
