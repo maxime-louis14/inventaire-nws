@@ -46,6 +46,7 @@ class ReservationType extends AbstractType
 
 
         // dd($array);
+        
             // foreach ($array as $values) {
             //     dd($values);
             // }
@@ -81,14 +82,14 @@ class ReservationType extends AbstractType
             ->add('name', ChoiceType::class, [
                 'label' => 'Nom',
                 'choices' => [
-                    "Je n'ai pas réussi" => "Je n'ai pas réussi"
+                    "Je n'ai pas réussi" => "cc"
                 ]
             ])
 
             ->add('email', ChoiceType::class, [
                 'label' => 'email',
                 'choices' => [
-                    "Je n'ai pas réussi" => "Je n'ai pas réussi"
+                    "Je n'ai pas réussi" => "cc"
                 ]
             ])
 
