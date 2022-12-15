@@ -25,3 +25,4 @@ jobs:
 
       - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd inventaire-nws && git pull"
       - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd inventaire-nws && docker compose up -d --build"
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose exec php php bin/console doctrine:database:create"
