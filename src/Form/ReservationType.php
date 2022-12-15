@@ -65,8 +65,7 @@ class ReservationType extends AbstractType
 
         // dd($array);
         // J'ai toute les données dans le tableau array mais il ne sont ranger
-
-
+        
         // array_map applique une function au element du tableau
         $array = array_map(function ($e) {
             return [
